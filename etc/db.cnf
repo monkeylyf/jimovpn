@@ -1,0 +1,5 @@
+[client]
+database=jimovpn
+user=jimovpn
+password=sekr!t
+default-character-set=utf8

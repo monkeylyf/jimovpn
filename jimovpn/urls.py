@@ -7,7 +7,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', include('vpn_user.urls'))
     # Examples:
     # url(r'^$', 'jimovpn.views.home', name='home'),
     # url(r'^jimovpn/', include('jimovpn.foo.urls')),
@@ -16,5 +15,6 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^user/', include('vpn_user.urls')),
 )
