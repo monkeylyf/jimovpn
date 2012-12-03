@@ -1,34 +1,21 @@
 <html>
 <head>
-<style>
-body {
-	background-color:#d0e4fe;
-}
-
-h1 {
-	color:orange;
-	text-align:center;
-}
-
-p {
-	font-family:"Times New Roman";
-	font-size:20px;
-}
-
-form {
-	padding:auto;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
 </head>
 	<body>
 	<h1>Welcome to jimovpn</h1>
 	<p>
-	<form method="post" action=".">
-	<table>
-  	{{form.as_table}}
- 	 <tr><td>&nbsp;</td><td><input type="submit" value="Create User" /><td></tr>
-	</table>
+	<form method="post" action="register">{% csrf_token %}
+		<table>
+  		{{form.as_table}}
+ 	 	<tr><td>&nbsp;</td><td><input type="submit" value="Create User" /><td></tr>
+		</table>
+		<!--{% for field in form%}
+			<div class="fieldWrapper">
+				{{ field.errors }}
+				{{ field.label_tag }}: {{ field }}
+			</div>
+		{% endfor %}--!>
 	</form>
 	</p>
 	</body>

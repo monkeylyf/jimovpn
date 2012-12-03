@@ -6,11 +6,10 @@ class Users(models.Model):
     active = models.BooleanField()
     ctime = models.DateTimeField(auto_now_add=True)
     mtime = models.DateTimeField(auto_now=True)
-    name = models.TextField()
     email = models.EmailField(max_length=75)
     note = models.TextField()
-    quota_cycle = models.PositiveSmallIntegerField()
-    quota_bytes = models.PositiveIntegerField()
+    quota_cycle = models.PositiveSmallIntegerField(default=120) # Unit: hour.
+    quota_bytes = models.PositiveIntegerField(default=1)
     enabled = models.BooleanField()
 
 class Log(models.Model):
@@ -19,7 +18,7 @@ class Log(models.Model):
     end_time = models.DateTimeField()
     trusted_ip = models.CharField(max_length=64)
     trusted_port = models.PositiveSmallIntegerField()
-    protocal = models.CharField(max_length=10)
+    protocol = models.CharField(max_length=10)
     remote_ip = models.CharField(max_length=64)
     remote_netmask = models.CharField(max_length=64)
     bytes_received = models.PositiveIntegerField()

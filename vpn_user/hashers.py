@@ -1,0 +1,5 @@
+from django.contrib.auth.hashers import PBKDF2PasswordHasher
+
+class MyPBKDF2PasswordHasher(PBKDF2PasswordHasher):
+    """A subclass of PBKDF2PasswordHasher that uses 10 times less interation"""
+    iterations = PBKDF2PasswordHasher.iterations / 10

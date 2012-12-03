@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-attrs_dict = {'class': 'required'}
+attrs_dict = {'class': 'required',
+              'size': '50'}
 
 class RegistrationForm(forms.Form):
 
@@ -11,19 +12,19 @@ class RegistrationForm(forms.Form):
     username = forms.RegexField(regex=r'^[\w.@+-]+$',
                                 max_length=30,
                                 widget=forms.TextInput(attrs=attrs_dict),
-                                label=_("Username"),
+                                label=_('Username'),
                                 error_messages={'invalid': _( \
                                     'This value may contain only letters, '
                                     'numbers and @/./+/-/_ characters.')})
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
                                                     maxlength=75)),
-                             label=_('E-mail'))
+                             label=_('Email'))
     password = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict,
                                                           render_value=False),
                                label=_('Password'))
     check_pw = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict,
                                                           render_value=False),
-                               label=_('Password (again)'))
+                               label=_('Password again'))
 
     def clean_username(self):
         """Validate that the username is alphanumeric and it not registered."""

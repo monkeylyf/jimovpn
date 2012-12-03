@@ -5,5 +5,6 @@ from vpn_user import views
 
 urlpatterns = patterns('',
     url(r'^register$', views.register, name='register'),
+    url(r'^thanks$', views.thanks, name='thanks'),
     url(r'^$', views.index, name='index'),
 )

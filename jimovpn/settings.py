@@ -109,6 +109,10 @@ TEMPLATE_DIRS = (
     '/home/pi/ironport/jimovpn/jimovpn/template'
 )
 
+PASSWROD_HASHERS = {
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher', 
+}
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
