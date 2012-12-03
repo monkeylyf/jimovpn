@@ -2,7 +2,7 @@ from django.db import models
 
 class Users(models.Model):
     username = models.CharField(max_length=32)
-    passwrod = models.CharField(max_length=128)
+    password = models.CharField(max_length=128)
     active = models.BooleanField()
     ctime = models.DateTimeField(auto_now_add=True)
     mtime = models.DateTimeField(auto_now=True)
