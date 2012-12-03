@@ -1,11 +1,13 @@
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from vpn_user.regist_form import RegistrationForm
-from vpn_user.models import Users
 from vpn_user.hashers import MyPBKDF2PasswordHasher
+from vpn_user.models import Users
+from vpn_user.regist_form import RegistrationForm
+from vpn_user.shoot_email import registration_email
 
 
 def index(request):
@@ -27,8 +29,9 @@ def register(request):
             new_user.active = False;
             new_user.email = form.cleaned_data['email']
             new_user.note = ''
-
+            send_mail('hi', 'test test', 'noreply@yifengliu.com', ['laituan1986@gmail.com'], fail_silently=False)
             new_user.save()
+            registration_email(form.cleaned_data['email'])
             return HttpResponseRedirect(reverse('vpn_user.views.thanks'))
         else:
             return HttpResponse("Hello, your info is not valid, try again!" + str(form.errors))

@@ -4,7 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Yifeng Liu', 'admin@yifengliu.com'),
 )
 
 MANAGERS = ADMINS
@@ -108,6 +108,14 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     '/home/pi/ironport/jimovpn/jimovpn/template'
 )
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'noreply@yifengliu.com'
+EMAIL_HOST_PASSWORD = '4e&J&bHS'
+EMAIL_PORT = "587"
+EMAIL_USE_TLS = True
+SERVER_EMAIL = 'noreply@yifengliu.com'
+DEFAULT_FROM_EMAIL = 'noreply@yifengliu.com'
 
 PASSWROD_HASHERS = {
     'django.contrib.auth.hashers.PBKDF2PasswordHasher', 
