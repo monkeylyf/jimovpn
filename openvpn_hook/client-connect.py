@@ -3,6 +3,8 @@
 import setup
 import os
 import sys
+import datetime
+from vpn_user.models import Users,Log
 
 def client_connect():
     if len(sys.argv) > 1:
@@ -10,10 +12,28 @@ def client_connect():
     else:
         directive_file = None
     common_name = os.environ.get("common_name", None)
-    assigned_ip = os.environ.get("ifconfig_pool_remote_ip", None)
+    assigned_ip = os.environ.get("ifconfig_pool_remote_ip", '??')
     time_unix   = int(os.environ.get("time_unix", "0"))
-    remote_ip   = os.environ.get("trusted_ip", None)
-    remote_port = os.environ.get("trusted_port", None)
+    remote_ip   = os.environ.get("trusted_ip", '??')
+    remote_port   = int(os.environ.get("trusted_port", 0))
 
+    if not common_name:
+        return False
+        
+    log = Log()
+    user = None
+    try:
+        user = Users.objects.get(username__iexact=common_name)
+    except Users.DoesNotExist:
+        return False
+    
+    log.user = user
+    log.start_time = datetime.datetime.fromtimestamp(time_unix)
+    log.remote_ip = remote_ip
+    log.remote_port = remote_port
+    log.vpn_ip = assigned_ip
+    log.save()
+    return True
 if __name__ == "__main__":
-    client_connect()
+    if not client_connect():
+        sys.exit(1)
