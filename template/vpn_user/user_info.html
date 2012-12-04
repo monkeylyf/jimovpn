@@ -1,0 +1,15 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
+</head>
+	<body>
+	<h1>user info table</h1>
+	</body>
+	<table>
+	<tr><th>username</th><th>active</th><th>ctime</th><th>mtime</th><th>email</th><th>note</th><th>quota_cycle</th><th>quota_bytes</th><th>enabled</th></tr>
+	{% for b in obj %}
+	<tr><td>{{ b.username }}</td><td>{{ b.active }}</td><td>{{ b.ctime }}</td><td>{{ b.mtime }}</td><td>{{ b.email }}</td><td>{{ b.note }}</td><td>{{ b.quota_cycle }}</td><td>{{ b.quota_bytes }}</td><td>{{ b.enabled }}</td></tr>
+	{% endfor %}
+	</table>
+
+</html>

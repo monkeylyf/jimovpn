@@ -121,6 +121,8 @@ PASSWROD_HASHERS = {
     'django.contrib.auth.hashers.PBKDF2PasswordHasher', 
 }
 
+LOGIN_URL = '/admin/'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

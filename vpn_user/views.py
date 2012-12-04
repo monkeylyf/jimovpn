@@ -1,4 +1,4 @@
-from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -6,12 +6,14 @@ from django.shortcuts import render
 
 from vpn_user.hashers import MyPBKDF2PasswordHasher
 from vpn_user.models import Users
+from vpn_user.models import Log
 from vpn_user.regist_form import RegistrationForm
 from vpn_user.shoot_email import registration_email
 
 
 def index(request):
     return HttpResponse("Hello, this website is not ready yet!")
+
 
 def register(request):
     """"""
@@ -29,7 +31,6 @@ def register(request):
             new_user.active = False;
             new_user.email = form.cleaned_data['email']
             new_user.note = ''
-            send_mail('hi', 'test test', 'noreply@yifengliu.com', ['laituan1986@gmail.com'], fail_silently=False)
             new_user.save()
             registration_email(form.cleaned_data['email'])
             return HttpResponseRedirect(reverse('vpn_user.views.thanks'))
@@ -37,10 +38,20 @@ def register(request):
             return HttpResponse("Hello, your info is not valid, try again!" + str(form.errors))
     else:
         form = RegistrationForm()
-    return render(request, 'vpn_user/registration.html', {
-        'form': form,
-    })
+        return render(request,
+                      'vpn_user/registration.html',
+                      {'form': form}
+                      )
+
 
 def thanks(request):
     """"""
     return render(request, 'vpn_user/thanks.html')
+
+@login_required
+def user_info(request):
+    """This view requires login."""
+    return render(request, 
+                  'vpn_user/user_info.html',
+                  {'obj': Users.objects.all()}
+                  )

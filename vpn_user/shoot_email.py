@@ -5,7 +5,7 @@ def registration_email(recipient):
     subject = 'Welcome to jimovpn'
     msg = """Welcome to jimovpn
 
-You will received another notification email as soon as the admin activates your account.
+You will receive another notification email as soon as the admin activates your account.
 
 If you have any questions abou the system, feel free to contact us anytime at admin@yifengliu.com.
 
