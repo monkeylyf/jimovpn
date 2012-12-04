@@ -1,15 +1,43 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>user management page</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script>
+			$(document).ready( function() {
+					
+			});
+			function enable_user (id) {
+				$.ajax({
+					url: "/user/enable_user",
+					data: { id: id }
+					}).success(refresh_element);
+			}
+			function diable_user (id) {
+				$.ajax({
+					url: "/user/disable_user",
+					data: { id: id }
+					}).success(refresh_element);
+			}
+			function refresh_element () {
+				history.go(0);
+			}
+		</script>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
+	</head>
 	<body>
-	<h1>user info table</h1>
+		<h1>user info table</h1>
 	</body>
 	<table>
-	<tr><th>username</th><th>active</th><th>ctime</th><th>mtime</th><th>email</th><th>note</th><th>quota_cycle</th><th>quota_bytes</th><th>enabled</th></tr>
-	{% for b in obj %}
-	<tr><td>{{ b.username }}</td><td>{{ b.active }}</td><td>{{ b.ctime }}</td><td>{{ b.mtime }}</td><td>{{ b.email }}</td><td>{{ b.note }}</td><td>{{ b.quota_cycle }}</td><td>{{ b.quota_bytes }}</td><td>{{ b.enabled }}</td></tr>
-	{% endfor %}
+		<tr><th>username</th><th>active</th><th>ctime</th><th>mtime</th><th>email</th>
+			<th>note</th><th>quota_cycle</th><th>quota_bytes</th><th>enabled</th></tr>
+		{% for b in obj %}
+		<tr><td>{{ b.username }}</td><td>{{ b.active }}</td><td>{{ b.ctime }}
+			</td><td>{{ b.mtime }}</td><td>{{ b.email }}</td><td>{{ b.note }}</td>
+			<td>{{ b.quota_cycle }}</td><td>{{ b.quota_bytes }}</td><td>{{ b.enabled }}</td>
+			<td><button onclick="enable_user( {{ b.id }})">Enable</button>
+			<button onclick="diable_user( {{ b.id }})">Disable</button></td></tr>
+		{% endfor %}
 	</table>
-
 </html>

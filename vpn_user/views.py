@@ -9,6 +9,8 @@ from vpn_user.models import Users
 from vpn_user.models import Log
 from vpn_user.regist_form import RegistrationForm
 from vpn_user.shoot_email import registration_email
+from vpn_user.shoot_email import enable_email
+from vpn_user.shoot_email import disable_email
 
 
 def index(request):
@@ -48,6 +50,7 @@ def thanks(request):
     """"""
     return render(request, 'vpn_user/thanks.html')
 
+
 @login_required
 def user_info(request):
     """This view requires login."""
@@ -55,3 +58,19 @@ def user_info(request):
                   'vpn_user/user_info.html',
                   {'obj': Users.objects.all()}
                   )
+
+def enable_user(request):
+    """"""
+    user =  Users.objects.filter(id=request.GET.get('id', ''))[0]
+    user.enabled = True
+    enable_email(user.email, user.username)
+    user.save()
+    return HttpResponse()
+
+def disable_user(request):
+    """"""
+    user =  Users.objects.filter(id=request.GET.get('id', ''))[0]
+    user.enabled = False
+    disable_email(user.email, user.username)
+    user.save()
+    return HttpResponse()
