@@ -11,19 +11,19 @@ def client_connect():
         directive_file = sys.argv[1]
     else:
         directive_file = None
-    common_name = os.environ.get("common_name", None)
+    username    = os.environ.get("username", None)
     assigned_ip = os.environ.get("ifconfig_pool_remote_ip", '??')
     time_unix   = int(os.environ.get("time_unix", "0"))
     remote_ip   = os.environ.get("trusted_ip", '??')
     remote_port   = int(os.environ.get("trusted_port", 0))
 
-    if not common_name:
+    if not username:
         return False
         
     log = Log()
     user = None
     try:
-        user = Users.objects.get(username__iexact=common_name)
+        user = Users.objects.get(username__iexact=username)
     except Users.DoesNotExist:
         return False
     

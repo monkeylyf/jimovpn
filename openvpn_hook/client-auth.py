@@ -10,7 +10,7 @@ def authenticate(username, password):
     remote_ip = os.environ.get("untrusted_ip", "0.0.0.0")
     try:
         user = Users.objects.get(username__iexact=username)
-        return MyPBKDF2PasswordHasher().verify(password, user.password)
+        return user.enabled and MyPBKDF2PasswordHasher().verify(password, user.password)
     except Users.DoesNotExist:
         pass
     return False
