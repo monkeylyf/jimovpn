@@ -1,14 +1,17 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>user registration page</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
+	</head>
 	<body>
-	<h1>Welcome to jimovpn</h1>
+		<h1>Welcome to jimovpn</h1>
 	<p>
 	<form method="post" action="register">{% csrf_token %}
 		<table>
   		{{form.as_table}}
- 	 	<tr><td>&nbsp;</td><td><input type="submit" value="Create User" /><td></tr>
+ 	 	<tr><td>&nbsp;</td><td><input type="submit" value="Create User"/><td></tr>
 		</table>
 		<!--{% for field in form%}
 			<div class="fieldWrapper">

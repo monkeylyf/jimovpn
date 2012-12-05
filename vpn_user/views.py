@@ -57,20 +57,28 @@ def user_info(request):
     return render(request, 
                   'vpn_user/user_info.html',
                   {'obj': Users.objects.all()}
-                  )
+                 )
 
-def enable_user(request):
-    """"""
+
+def enable_disable(request):
+    """Enable or disable user service and send notification email."""
     user =  Users.objects.filter(id=request.GET.get('id', ''))[0]
-    user.enabled = True
-    enable_email(user.email, user.username)
+    if user.enabled == False:
+        user.enabled = True
+        enable_email(user.email, user.username)
+    else:
+        user.enabled = False
+        disable_email(user.email, user.username)
     user.save()
     return HttpResponse()
 
-def disable_user(request):
-    """"""
+
+@login_required
+def user_log(request):
+    """This view requires login."""
     user =  Users.objects.filter(id=request.GET.get('id', ''))[0]
-    user.enabled = False
-    disable_email(user.email, user.username)
-    user.save()
-    return HttpResponse()
+    log = Log.objects.filter(user=user)
+    return render(request,
+                  'vpn_user/user_log.html',
+                  {'log': log}
+                )

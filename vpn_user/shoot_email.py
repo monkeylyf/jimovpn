@@ -42,3 +42,4 @@ If you have any questions about the system, feel free to contact us anytime at a
 The jimovpn team,
 An Automatic joint."""% (username, )
 
+    send_mail(subject, msg, '', [recipient], fail_silently=False)

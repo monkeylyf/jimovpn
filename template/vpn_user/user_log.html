@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>user logging page</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script>
+		</script>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
+	</head>
+	<body>
+		<h1>User Logging Information</h1>
+	</body>
+	<table>
+		<tr><th>start_time</th><th>end_time</th><th>remote_ip</th><th>remote_port</th>
+			<th>protocol</th><th>vpn_ip</th><th>vpn_netmask</th><th>bytes_received</th>
+			<th>bytes_sent</th><th>disconnected</th></tr>
+		{% for b in log %}
+		<tr><td>{{ b.start_time }}</td><td>{{ b.end_time }}</td><td>{{ b.remote_ip }}</td>
+			<td>{{ b.remote_port }}</td><td>{{ b.protocol }}</td><td>{{ b.vpn_ip }}</td>
+			<td>{{ b.vpn_netmask }}</td><td>{{ b.bytes_received }}</td>
+			<td>{{ b.bytes_sent }}</td><td>{{ b.disconnected }}</td>
+		{% endfor %}
+	</table>
+</html>
