@@ -4,7 +4,9 @@ import setup
 import os
 import sys
 import datetime
-from vpn_user.models import Users,Log
+
+from vpn_user.models import Log
+from vpn_user.models import Users
 
 def client_connect():
     if len(sys.argv) > 1:
@@ -33,7 +35,10 @@ def client_connect():
     log.remote_port = remote_port
     log.vpn_ip = assigned_ip
     log.save()
+
     return True
+
+
 if __name__ == "__main__":
     if not client_connect():
         sys.exit(1)
