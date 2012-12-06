@@ -1,3 +1,6 @@
+import datetime
+from time import mktime
+
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
@@ -11,7 +14,9 @@ from vpn_user.regist_form import RegistrationForm
 from vpn_user.shoot_email import registration_email
 from vpn_user.shoot_email import enable_email
 from vpn_user.shoot_email import disable_email
+from vpn_user.utils import date_range
 
+BYTES_TO_MEGABYTES = 1024 * 1024
 
 def index(request):
     return HttpResponse("Hello, this website is not ready yet!")
@@ -78,7 +83,33 @@ def user_log(request):
     """This view requires login."""
     user =  Users.objects.filter(id=request.GET.get('id', ''))[0]
     log = Log.objects.filter(user=user)
+    data = {}
+    for obj in log:
+        # Client must have disconnected already and have end_time stamp so the
+        # date logged is valid.
+        if obj.disconnected and obj.end_time != None:
+            start = mktime(obj.start_time.timetuple()) + 1e-6*obj.end_time.microsecond
+            end = mktime(obj.end_time.timetuple()) + 1e-6*obj.end_time.microsecond
+            data[int(start)] = [int(end - start),
+                                obj.bytes_received,
+                                obj.bytes_sent]
+    for k, v in data.iteritems():
+        print k, v
     return render(request,
                   'vpn_user/user_log.html',
-                  {'log': log}
+                  {'log': log, 
+                   'data': data}
+                )
+
+
+def base(request):
+    """"""
+    return render(request,
+                  'vpn_user/base.html',
+                )
+
+def hero(request):
+    """"""
+    return render(request,
+                  'vpn_user/hero.html',
                 )
