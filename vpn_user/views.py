@@ -45,6 +45,7 @@ def register(request):
             return HttpResponse("Hello, your info is not valid, try again!" + str(form.errors))
     else:
         form = RegistrationForm()
+        print form.as_table()
         return render(request,
                       'vpn_user/registration.html',
                       {'form': form}
@@ -91,8 +92,8 @@ def user_log(request):
             start = mktime(obj.start_time.timetuple()) + 1e-6*obj.end_time.microsecond
             end = mktime(obj.end_time.timetuple()) + 1e-6*obj.end_time.microsecond
             data[int(start)] = [int(end - start),
-                                obj.bytes_received,
-                                obj.bytes_sent]
+                                int(obj.bytes_received),
+                                int(obj.bytes_sent)]
     for k, v in data.iteritems():
         print k, v
     return render(request,

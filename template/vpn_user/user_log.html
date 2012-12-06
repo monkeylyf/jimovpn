@@ -7,20 +7,75 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(function() {
+		drawChart(usage, 7);
+		document.days.selectdays.options.selectedIndex = 1;
+	});
 
+      var usage = {{ data }};
+
+	  function inRange(x, st, ed) {
+		return x >= st && x <= ed;
+	  }
+	  function padZero(s) {
+	      if (s.length == 1)
+		      return '0' + s;
+		  else 
+		      return s;
+	  }
+	  function prepareData(data, interval, points) {
+		var bins = prepareBins(data, interval, points);
+		for (var i = 0; i < bins.length; i++) {
+			var bin_st = bins[i][0];
+			var bin_ed = bins[i][0] + interval;
+			for (var start_time in usage) {
+				var curUsage = usage[start_time];
+				var duration = curUsage[0];
+				var recv_bytes = curUsage[1];
+				var sent_bytes = curUsage[2];
+				
+				var use_st = parseInt(start_time);
+				var use_ed = use_st + duration;
+				if (inRange(use_st, bin_st, bin_ed) || inRange(use_ed, bin_st, bin_ed) ||
+					inRange(bin_st, use_st, use_ed) || inRange(bin_st, use_st, use_ed) ) { // The usage interval and bin have overlap.
+					var overlap_st = Math.max(bin_st, use_st);
+					var overlap_ed = Math.min(bin_ed, use_ed);
+					var percentage = (overlap_ed - overlap_st) / duration;
+					
+					bins[i][1] += recv_bytes * percentage;
+					bins[i][2] += sent_bytes * percentage;
+				}
+			}
+		}
+		// Convert bin timestamps back to date string
+		for (var i = 0; i < bins.length; i++) {
+			var temp = new Date(bins[i][0] * 1000);
+			bins[i][0] = temp.getUTCFullYear().toString() + "-" + 
+                  (temp.getUTCMonth() + 1).toString() + "-" +
+                  temp.getUTCDate().toString();
+				  //+ " " +
+                  //padZero(temp.getUTCHours().toString()) + ":" +
+                  //padZero(temp.getUTCMinutes().toString()) + ":" +
+                  //padZero(temp.getUTCSeconds().toString());
+		}
+		return bins;
+	  }
+	  function prepareBins(data, interval, points) {
+		var result = [];
+		var now = new Date().getTime() / 1000;
+		result[points - 1] = [Math.floor(now / interval) * interval, 0, 0];
+		for (var i=points - 2; i >=0 ;i--)
+			result[i] = [result[i+1][0] - interval, 0, 0];
+		return result;
+	  }
       function drawChart(data, days) {
-        var chart = [['Month', 'Received Bytes', 'Sent Bytes']]
-        for (var i = 0; i < days; ++i) {
-          chart[i + 1] = data[i];
+        var chart = [['Date', 'Received Bytes', 'Sent Bytes']]
+		var displayedData = prepareData(data, 86400, days);
+        for (var i = 0; i < displayedData.length; ++i) {
+          chart[i + 1] = displayedData[i];
         }
-        var data = google.visualization.arrayToDataTable([
-          ['Month', 'Received Bytes', 'Sent Bytes'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+		
+        var data = google.visualization.arrayToDataTable(chart);
 
         var options = {
           title: 'User received and sent data'
@@ -33,7 +88,7 @@
     <script>
       function dropDownDays(days) {
         if (document.days.selectdays.value != "null") {
-          drawChart('{{ data }}', days);
+          drawChart(usage, days);
         }
       }
     </script>
