@@ -1,16 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>thanks for registerting jimovpn</title>
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
-	</head>
-		<body>
-		<h1>Thanks for registering jimovpn</h1>
-		<h2>You will received the confirmation email of your registration soon.</h2>
-		<h2>Please download openvpn client by clicking the following link:</h2>
-		<p><a href="https://www.privatetunnel.com/us/client/privatetunnel.msi">For Windows user</a></p>
-		<p><a href="mailto:admin@yifengliu.com?subject=Questions on jimovpn">Email me</a></p>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Start Jimo VPN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="{{ STATIC_URL }}ico/blue.png">
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}ico/blue.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}ico/apple-touch-icon-57-precomposed.png">--!>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Jimo VPN</a>
+          <!--<div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+          </div>--!><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Thanks for signup!</h1>
+        <p>You will receive the confirmation email of your registration shortly. And your account will be activated by two highly trained monkeys soon.</p>
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span8">
+          <h2>How to start</h2>
+          <p>1. You need a third-party OpenVPN Client to connect to our VPN server. Please click Download here below. If you are a Mac user, we are really sorry that OpenVPN currently support Windows only.</p>
+          <p><a class="btn" href="http://www.sourceforge.net/projects/securepoint/files/latest/download">Download here &raquo;</a></p>
+          <p>2. Double-clicke the openvpn install file you just downloaded.</p>
+          <p>3. Click I Agree to proceed.</p>
+          <p>4. It's totally up to you to choose Current user or All users.</p>
+          <p>5. Please choose Management next so you can manage configurations.</p>
+          <p>6. Please choose yes so the user credentials can be saved.</p>
+          <p>7. Choose the destination folder you want to install under.</p>
+          <p>8. Click install and wait for a couple of seconds.</p>
+          <p>9. If 360 safeguard or such kind of  notorious software pop out, PLEASE choose allow this operation.</p>
+          <p>10. </p>
+        </div>
+        <div class="span8">
+          <h2>How to configure OpenVPN</h2>
+          <p>1. Download configuration files</p>
+          <p><a class="btn" href="{{ STATIC_URL }}file/openvpn_config.rar">Download here &raquo;</a></p>
+          <p>2. Unzip the file under some directory you think it's safe.</p>
+          <p>3. Double click Securepoint SSL VPN.exe.</p>
+          <p>4. Click Import.</p>
+          <img border="0" src="{{ STATIC_URL }}img/import_config.jpg">
+          <p>5. Click ... below Path to the *.ovpn file</p>
+          <img border="0" src="{{ STATIC_URL }}img/choose_config.jpg">
+          <p>6. Go to the directory you just unzip the configuration file in the pop-up window.</p>
+          <img border="0" src="{{ STATIC_URL }}img/chosen.jpg">
+          <p>7. Click Import.</p>
+          <img border="0" src="{{ STATIC_URL }}img/done_import.jpg">
+          <p>8. Now you will see jimovpn Ready to connect and click Connect.</p>
+          <img border="0" src="{{ STATIC_URL }}img/click_connect.jpg">
+          <p>9. Login with your username and password (your account must have been activated first).</p>
+          <p>10. Don't forget click Disconnect when you are done with OpenVPN.</p>
+          <img border="0" src="{{ STATIC_URL }}img/go_nuts.jpg">
+          <p>11. Now you are all set! PLEASE GO NUTS! Oh..no, sorry you can't go completely nuts. Please keep reading Must Know part below.</p>
+        </div>
+        <div class="span8">
+          <h2>Must Know</h2>
+          <p>The purpose of this VPN project is helping our friends to surf freely on internet so PLEASE DO NOT ABUSE IT. If you plan to we advise you not becase we are monitoring and we will know! Imagine two highly trained monkeys hunting you down...:)</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Jimo VPN team</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-scrollspy.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-tab.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-tooltip.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-popover.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-button.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-collapse.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-carousel.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>

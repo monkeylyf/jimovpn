@@ -3,23 +3,52 @@
 	<head>
 		<meta charset="utf-8">
 		<title>user registration page</title>
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gangnam_style.css">
+		<!---<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gangnam_style.css">---!>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css">
 	</head>
 	<body>
-		<h1>Welcome to jimovpn</h1>
+  <div class="container">
+  <div class="row">
+  <div class="span8">
+		<h1>Join jimo VPN today.</h1>
 	<p>
 	<form method="post" action="register">{% csrf_token %}
+    <fieldset>
+    <!--
+    <legend>Registration</legend>
 		<table>
-  		{{form.as_table}}
- 	 	<tr><td>&nbsp;</td><td><input type="submit" value="Create User"/><td></tr>
+      <div class="control-group">
+        <label class="control-label">Name</label>
+        <div class="controls"><input type="text" class="input-xlarge" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name"></div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Email</label>
+        <div class="controls">
+        <input type="text" class="input-xlarge" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
+        </div>
+      </div>
+      --!>
+
+      <tr><th><label for="id_username">Username:</label></th><td><input name="username" maxlength="30" id="id_username" type="text" class="required" size="50" /></td></tr>
+      <tr><th><label for="id_email">Email:</label></th><td><input name="email" maxlength="75" id="id_email" type="text" class="required" size="50" /></td></tr>
+      <tr><th><label for="id_password">Password:</label></th><td><input id="id_password" type="password" class="required" name="password" size="50" /></td></tr>
+      <tr><th><label for="id_check_pw">Password again:</label></th><td><input id="id_check_pw" type="password" class="required" name="check_pw" size="50" /></td></tr>
+  		<!--{{form.as_table}}--!>
+      <div class="control-group">
+        <label class="control-label"></label>
+          <div class="controls">
+            <button type="submit" class="btn btn-success" >Create My Account</button>
+          </div>
+      </div>
+
 		</table>
-		<!--{% for field in form%}
-			<div class="fieldWrapper">
-				{{ field.errors }}
-				{{ field.label_tag }}: {{ field }}
-			</div>
-		{% endfor %}--!>
+    </fieldset>
 	</form>
 	</p>
+  </div>
+  </div>
+  </div>
 	</body>
 </html>

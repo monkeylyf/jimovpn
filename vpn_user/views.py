@@ -94,8 +94,6 @@ def user_log(request):
             data[int(start)] = [int(end - start),
                                 int(obj.bytes_received),
                                 int(obj.bytes_sent)]
-    for k, v in data.iteritems():
-        print k, v
     return render(request,
                   'vpn_user/user_log.html',
                   {'log': log, 
@@ -107,10 +105,4 @@ def base(request):
     """"""
     return render(request,
                   'vpn_user/base.html',
-                )
-
-def hero(request):
-    """"""
-    return render(request,
-                  'vpn_user/hero.html',
                 )
