@@ -19,8 +19,7 @@ from vpn_user.utils import date_range
 BYTES_TO_MEGABYTES = 1024 * 1024
 
 def index(request):
-    return HttpResponse("Hello, this website is not ready yet!")
-
+    return HttpResponseRedirect(reverse('vpn_user.views.register'))
 
 def register(request):
     """"""
