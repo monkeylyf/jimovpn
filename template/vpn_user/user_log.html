@@ -42,8 +42,8 @@
 					var overlap_ed = Math.min(bin_ed, use_ed);
 					var percentage = (overlap_ed - overlap_st) / duration;
 					
-					bins[i][1] += recv_bytes * percentage;
-					bins[i][2] += sent_bytes * percentage;
+					bins[i][1] += recv_bytes * percentage / 1024 / 1024;
+					bins[i][2] += sent_bytes * percentage / 1024 / 1024;
 				}
 			}
 		}
@@ -69,7 +69,7 @@
 		return result;
 	  }
       function drawChart(data, days) {
-        var chart = [['Date', 'Received Bytes', 'Sent Bytes']]
+        var chart = [['Date', 'Received MB', 'Sent MB']]
 		var displayedData = prepareData(data, 86400, days);
         for (var i = 0; i < displayedData.length; ++i) {
           chart[i + 1] = displayedData[i];
