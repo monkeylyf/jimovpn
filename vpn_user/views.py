@@ -16,7 +16,6 @@ from vpn_user.shoot_email import enable_email
 from vpn_user.shoot_email import disable_email
 from vpn_user.utils import date_range
 
-from BootstrapForm import BootstrapErrorList
 BYTES_TO_MEGABYTES = 1024 * 1024
 
 def index(request):
