@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^base$', views.base, name='base'),
     url(r'^enable_disable$', views.enable_disable, name='enable_disable'),
     url(r'^$', views.index, name='index'),
+    url(r'^check_name', views.validate_username),
+    url(r'^check_email', views.validate_email),
 )

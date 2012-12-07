@@ -1,5 +1,5 @@
-import datetime
 from time import mktime
+import json
 
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -109,9 +109,11 @@ def base(request):
 def validate_username(request):
     """"""
     username = request.GET.get('username', '')
-    return Users.objects.filter(username=username).exists()
+    exists = Users.objects.filter(username=username).exists()
+    return HttpResponse(json.dumps(not exists), mimetype="application/json")
 
 def validate_email(request):
     """"""
     email = request.GET.get('email', '')
-    return Users.objects.filter(email=email).exists()
+    exists = Users.objects.filter(email=email).exists()
+    return HttpResponse(json.dumps(not exists), mimetype="application/json")
