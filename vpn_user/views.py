@@ -16,6 +16,7 @@ from vpn_user.shoot_email import enable_email
 from vpn_user.shoot_email import disable_email
 from vpn_user.utils import date_range
 
+from BootstrapForm import BootstrapErrorList
 BYTES_TO_MEGABYTES = 1024 * 1024
 
 def index(request):
@@ -41,15 +42,14 @@ def register(request):
             new_user.save()
             registration_email(form.cleaned_data['email'])
             return HttpResponseRedirect(reverse('vpn_user.views.thanks'))
-        else:
-            return HttpResponse("Hello, your info is not valid, try again!" + str(form.errors))
     else:
         form = RegistrationForm()
-        print form.as_table()
-        return render(request,
-                      'vpn_user/registration.html',
-                      {'form': form}
-                      )
+        
+    # Render the form if either its a GET method or the form did not pass validation
+    return render(request,
+                  'vpn_user/registration.html',
+                  {'form': form}
+                  )
 
 
 def thanks(request):

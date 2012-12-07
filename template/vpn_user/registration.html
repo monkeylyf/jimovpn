@@ -1,41 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>user registration page</title>
-		<!---<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gangnam_style.css">---!>
+  <head>
+    <meta charset="utf-8">
+    <title>user registration page</title>
+    <!---<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gangnam_style.css">---!>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css">
-	</head>
-	<body>
+  </head>
+  <body>
   <div class="container">
   <div class="row">
   <div class="span8">
-		<h1>Join jimo VPN today.</h1>
-	<p>
-	<form method="post" action="register">{% csrf_token %}
+    <h1>Join jimo VPN today.</h1>
+  <p>
+  <form method="post" action="register">{% csrf_token %}
     <fieldset>
-    <!--
-    <legend>Registration</legend>
-		<table>
-      <div class="control-group">
-        <label class="control-label">Name</label>
-        <div class="controls"><input type="text" class="input-xlarge" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name"></div>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">Email</label>
-        <div class="controls">
-        <input type="text" class="input-xlarge" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
-        </div>
-      </div>
-      --!>
-
-      <tr><th><label for="id_username">Username:</label></th><td><input name="username" maxlength="30" id="id_username" type="text" class="required" size="50" /></td></tr>
-      <tr><th><label for="id_email">Email:</label></th><td><input name="email" maxlength="75" id="id_email" type="text" class="required" size="50" /></td></tr>
-      <tr><th><label for="id_password">Password:</label></th><td><input id="id_password" type="password" class="required" name="password" size="50" /></td></tr>
-      <tr><th><label for="id_check_pw">Password again:</label></th><td><input id="id_check_pw" type="password" class="required" name="check_pw" size="50" /></td></tr>
-  		<!--{{form.as_table}}--!>
+      {{form}}
       <div class="control-group">
         <label class="control-label"></label>
           <div class="controls">
@@ -43,12 +23,12 @@
           </div>
       </div>
 
-		</table>
+    </table>
     </fieldset>
-	</form>
-	</p>
+  </form>
+  </p>
   </div>
   </div>
   </div>
-	</body>
+  </body>
 </html>

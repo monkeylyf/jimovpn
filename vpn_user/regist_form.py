@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from BootstrapForm import BootstrapForm
 
 attrs_dict = {'class': 'required',
               'size': '50'}
 
-class RegistrationForm(forms.Form):
+class RegistrationForm(BootstrapForm):
 
     """Form for new user to register a new account."""
 
