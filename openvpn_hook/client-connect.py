@@ -26,7 +26,7 @@ def client_connect():
         
     user = None
     try:
-        user = Users.objects.get(username__iexact=username)
+        user = Users.objects.get(username=username)
     except Users.DoesNotExist:
         return False
 

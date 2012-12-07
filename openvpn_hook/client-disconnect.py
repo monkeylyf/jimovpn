@@ -22,9 +22,9 @@ def client_disconnect():
         return False
     
     try:
-        log = Log.objects.get(user__username__iexact=username,
-                              remote_ip__iexact=remote_ip,
-                              remote_port__iexact=remote_port)
+        log = Log.objects.get(user__username=username,
+                              remote_ip=remote_ip,
+                              remote_port=remote_port)
     except Log.DoesNotExist:
         return False
     log.end_time = log.start_time + datetime.timedelta(0, time_duration)
