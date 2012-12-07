@@ -8,6 +8,8 @@ import datetime
 from vpn_user.models import Log
 from vpn_user.models import Users
 
+FILE_DIR = os.path.dirname(os.path.realpath(__file__))
+
 def client_connect():
     if len(sys.argv) > 1:
         directive_file = sys.argv[1]
@@ -22,13 +24,19 @@ def client_connect():
     if not username:
         return False
         
-    log = Log()
     user = None
     try:
         user = Users.objects.get(username__iexact=username)
     except Users.DoesNotExist:
         return False
-    
+
+#    if directive_file:
+#        fd = open(directive_file, "w")
+#        for line in open(os.path.join(FILE_DIR, "routes.txt"), "r"):
+#            fd.write(line)
+#        fd.close()
+
+    log = Log()
     log.user = user
     log.start_time = datetime.datetime.fromtimestamp(time_unix)
     log.remote_ip = remote_ip

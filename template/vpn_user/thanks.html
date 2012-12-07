@@ -23,11 +23,7 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="shortcut icon" href="{{ STATIC_URL }}ico/blue.png">
-    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}ico/blue.png">
-    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}ico/apple-touch-icon-57-precomposed.png">--!>
+    <link rel="shortcut icon" href="{{ STATIC_URL }}ico/jimo_bg-01_144.ico">
   </head>
 
   <body>
@@ -35,12 +31,14 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <!--<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Jimo VPN</a>
+          </a>--!>
+          <ul class="nav js-global-actions">
+          </ul>
+          <a class="brand" href="http://jimovpn.yifengliu.com/user/thanks">Jimo VPN</a>
           <!--<div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -82,27 +80,27 @@
       <div class="row">
         <div class="span8">
           <h2>How to start</h2>
-          <p>1. You need a third-party OpenVPN Client to connect to our VPN server. Please click Download here below. If you are a Mac user, we are really sorry that OpenVPN currently support Windows only.</p>
+          <p>1. You need a third-party OpenVPN Client to connect to our VPN server. For Windows user, please click Download here below (Try FPT download if it's taking forever for sourceforge). If you are a Mac user, it will be supported soon.</p>
           <p><a class="btn" href="http://www.sourceforge.net/projects/securepoint/files/latest/download">Download here &raquo;</a></p>
-          <p>2. Double-clicke the openvpn install file you just downloaded.</p>
+          <p><a class="btn" href="{{ STATIC_URL }}file/SecurepointSSLVPN.exe">FPT download here &raquo;</a></p>
+          <p>2. Double-click the openvpn install file you just downloaded.</p>
           <p>3. Click I Agree to proceed.</p>
           <p>4. It's totally up to you to choose Current user or All users.</p>
           <p>5. Please choose Management next so you can manage configurations.</p>
           <p>6. Please choose yes so the user credentials can be saved.</p>
           <p>7. Choose the destination folder you want to install under.</p>
           <p>8. Click install and wait for a couple of seconds.</p>
-          <p>9. If 360 safeguard or such kind of  notorious software pop out, PLEASE choose allow this operation.</p>
-          <p>10. </p>
+          <p>9. If 360 safeguard or such kind of notorious software pops out, PLEASE choose allow this operation.</p>
         </div>
         <div class="span8">
           <h2>How to configure OpenVPN</h2>
           <p>1. Download configuration files</p>
           <p><a class="btn" href="{{ STATIC_URL }}file/openvpn_config.rar">Download here &raquo;</a></p>
           <p>2. Unzip the file under some directory you think it's safe.</p>
-          <p>3. Double click Securepoint SSL VPN.exe.</p>
+          <p>3. Open Securepoint SSL VPN you just installed.</p>
           <p>4. Click Import.</p>
           <img border="0" src="{{ STATIC_URL }}img/import_config.jpg">
-          <p>5. Click ... below Path to the *.ovpn file</p>
+          <p>5. Click ... beside 'Path to the *.ovpn file'</p>
           <img border="0" src="{{ STATIC_URL }}img/choose_config.jpg">
           <p>6. Go to the directory you just unzip the configuration file in the pop-up window.</p>
           <img border="0" src="{{ STATIC_URL }}img/chosen.jpg">

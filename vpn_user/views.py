@@ -105,3 +105,13 @@ def base(request):
     return render(request,
                   'vpn_user/base.html',
                 )
+
+def validate_username(request):
+    """"""
+    username = request.GET.get('username', '')
+    return Users.objects.filter(username=username).exists()
+
+def validate_email(request):
+    """"""
+    email = request.GET.get('email', '')
+    return Users.objects.filter(email=email).exists()
