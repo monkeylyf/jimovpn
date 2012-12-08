@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from vpn_user.models import Users
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from BootstrapForm import BootstrapForm
@@ -29,11 +29,20 @@ class RegistrationForm(BootstrapForm):
 
     def clean_username(self):
         """Validate that the username is alphanumeric and it not registered."""
-        existing = User.objects.filter(username__iexact=self.cleaned_data['username'])
+        existing = Users.objects.filter(username=self.cleaned_data['username'])
         if existing.exists():
             raise forms.ValidationError(_('A user with that username already exists.'))
         else:
             return self.cleaned_data['username']
+
+    def clean_email(self):
+        """"""
+        existing = Users.objects.filter(username=self.cleaned_data['email'])
+        if existing.exists():
+            raise forms.ValidationError(_('A user with that email address already exists.'))
+        else:
+            return self.cleaned_data['email']
+
 
     def clean(self):
         """Verifiy that the values entered into the two password fields match.
